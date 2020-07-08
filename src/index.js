@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom'
 import Kennel from './components/Kennel'
-import './index.css';
 import * as serviceWorker from './serviceWorker';
 
+// <Router /> from react-router-dom library tells React that Routes are being used in <Kennel />.
 ReactDOM.render(
   <React.StrictMode>
-    <Kennel />
+    <Router>
+      <Kennel />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

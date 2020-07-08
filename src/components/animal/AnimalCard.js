@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Function responsible for rendering the animal cards.
 const AnimalCard = () => {
   return (
     <div className="card">

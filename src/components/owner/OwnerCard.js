@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Function responsible for rendering the owner cards.
 const OwnerCard = () => {
   return (
     <div className="ownerCard">

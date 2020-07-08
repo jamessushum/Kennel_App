@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Function responsible for rendering the employee cards.
 const EmployeeCard = () => {
   return (
     <div className="employeeCard">

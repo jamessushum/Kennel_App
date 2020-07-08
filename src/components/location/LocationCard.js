@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Function responsible for rendering the location cards.
 const LocationCard = () => {
   return (
     <div className="locationCard">
