@@ -1,17 +1,14 @@
 import React from 'react';
 
 // Function responsible for rendering the owner cards.
-const OwnerCard = () => {
+const OwnerCard = ({ownerObj}) => {
   return (
     <div className="ownerCard">
       <h3 className="ownerCard-name">
-        John Doe
+        {ownerObj.name}
       </h3>
       <p className="ownerCard-email">
-        john_doe@gmail.com
-      </p>
-      <p className="ownerCard-phone">
-        (123)456-7890
+        {ownerObj.email}
       </p>
     </div>
   )

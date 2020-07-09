@@ -1,0 +1,53 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Doodles",
+      "breed": "Poodle"
+    },
+    {
+      "id": 2,
+      "name": "Decker",
+      "breed": "German Shepherd"
+    },
+    {
+      "id": 3,
+      "name": "Esme",
+      "breed": "Pitbull"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Nashville Humane Association",
+      "address": "213 Oceola Ave, Nashville, TN 37209"
+    },
+    {
+      "id": 2,
+      "name": "Love at First Sight!",
+      "address": "4423 Murphy Rd, Nashville, TN 37209"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Jane Doe"
+    },
+    {
+      "id": 2,
+      "name": "John Doe"
+    }
+  ],
+  "owners": [
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "email": "jane_doe@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "email": "john_doe@gmail.com"
+    }
+  ]
+}
