@@ -18,10 +18,16 @@ const AnimalList = () => {
     getAnimals()
   }, [])
 
+  // Delete animal function takes in the animal id and invokes delete method in API. Then getAll method is invoked to retrieve updated list and the response is passed-in to setAnimals triggering the re-rendering of the JSX.
+  const deleteAnimal = (id) => {
+    AnimalManager.delete(id)
+    .then(() => AnimalManager.getAll().then(setAnimals))
+  }
+
   // returns JSX list of animal cards, by mapping through each animal object in animal array and passing data to <AnimalCard />
   return (
     <div className="container-cards">
-      {animals.map(animal => <AnimalCard key={animal.id} animalObj={animal} />)}
+      {animals.map(animal => <AnimalCard key={animal.id} animalObj={animal} deleteAnimal={deleteAnimal} />)}
     </div>
   )
 }

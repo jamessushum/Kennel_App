@@ -10,5 +10,12 @@ export default {
     const response = await fetch(`${remoteURL}/animals`)
     const result = await response.json()
     return result
+  },
+  async delete(id) {
+    const response = await fetch(`${remoteURL}/animals/${id}`, {
+      method: "DELETE"
+    })
+    const result = response.json()
+    return result
   }
 }

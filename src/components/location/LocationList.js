@@ -18,10 +18,15 @@ const LocationList = () => {
     getLocations()
   }, [])
 
+  // Delete location function invoking delete method in API, then invoking getAll method in API and passing response to setLocations re-rendering JSX
+  const deleteLocation = (id) => {
+    LocationManager.delete(id).then(() => LocationManager.getAll().then(setLocations))
+  }
+
   // Returning JSX for each location card using map and passing the state as a prop to <LocationCard />
   return (
     <div className="container-cards">
-      {locations.map(location => <LocationCard key={location.id} locationObj={location} />)}
+      {locations.map(location => <LocationCard key={location.id} locationObj={location} deleteLocation={deleteLocation} />)}
     </div>
   )
 }
