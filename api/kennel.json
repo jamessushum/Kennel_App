@@ -2,7 +2,7 @@
   "animals": [
     {
       "id": 1,
-      "name": "Doodles",
+      "name": "Doodle",
       "breed": "Poodle"
     },
     {
@@ -24,7 +24,7 @@
     },
     {
       "id": 2,
-      "name": "Love at First Sight!",
+      "name": "Love at First Sight! Adoption Center",
       "address": "4423 Murphy Rd, Nashville, TN 37209"
     }
   ],

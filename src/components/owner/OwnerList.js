@@ -15,9 +15,13 @@ const OwnerList = () => {
     getOwners()
   }, [])
 
+  const deleteOwner = (id) => {
+    OwnerManager.delete(id).then(() => OwnerManager.getAll().then(setOwners))
+  }
+
   return (
     <div className="container-cards">
-      {owners.map(owner => <OwnerCard key={owner.id} ownerObj={owner} />)}
+      {owners.map(owner => <OwnerCard key={owner.id} ownerObj={owner} deleteOwner={deleteOwner} />)}
     </div>
   )
 }

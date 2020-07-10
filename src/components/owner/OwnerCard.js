@@ -1,15 +1,19 @@
 import React from 'react';
+import './Owner.css'
 
 // Function responsible for rendering the owner cards.
-const OwnerCard = ({ownerObj}) => {
+const OwnerCard = ({ownerObj, deleteOwner}) => {
   return (
-    <div className="ownerCard">
-      <h3 className="ownerCard-name">
-        {ownerObj.name}
-      </h3>
-      <p className="ownerCard-email">
-        {ownerObj.email}
-      </p>
+    <div className="card">
+      <div className="card-content">
+        <h3 className="card-name">
+          Name: <span className="card-ownerName">{ownerObj.name}</span>
+        </h3>
+        <p className="card-email">
+          Email: <span className="card-ownerEmail">{ownerObj.email}</span>
+        </p>
+        <button type="button" onClick={() => deleteOwner(ownerObj.id)}>Remove</button>
+      </div>
     </div>
   )
 }
