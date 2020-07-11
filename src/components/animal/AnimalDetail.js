@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AnimalManager from '../../modules/AnimalManager';
+import { firstLetterCase } from '../../modules/helpers';
 import './AnimalDetail.css';
 
 // Function responsible for rendering the animal details.
@@ -35,8 +36,8 @@ const AnimalDetail = ({animalId, ...props}) => {
         <picture>
           <img src={require('./images/dog.svg')} alt="My Dog" />
         </picture>
-        <h3>Name: <span style={{color: 'darkslategrey'}}>{animal.name}</span></h3>
-        <p>Breed: {animal.breed}</p>
+        <h3>Name: <span style={{color: 'darkslategrey'}}>{firstLetterCase(animal.name)}</span></h3>
+        <p>Breed: {firstLetterCase(animal.breed)}</p>
         <button type="button" disabled={isLoading} onClick={handleDelete}>
           Discharge
         </button>
