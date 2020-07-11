@@ -2,18 +2,18 @@
   "animals": [
     {
       "id": 1,
-      "name": "Doodle",
-      "breed": "Poodle"
+      "name": "doodle",
+      "breed": "poodle"
     },
     {
       "id": 2,
-      "name": "Decker",
-      "breed": "German Shepherd"
+      "name": "decker",
+      "breed": "german shepherd"
     },
     {
       "id": 3,
-      "name": "Esme",
-      "breed": "Pitbull"
+      "name": "esme",
+      "breed": "pitbull"
     }
   ],
   "locations": [
