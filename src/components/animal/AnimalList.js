@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AnimalManager from '../../modules/AnimalManager';
 import AnimalCard from './AnimalCard';
 
-const AnimalList = () => {
+const AnimalList = ({...props}) => {
   // Initializing the state of animals to an empty array w/ useState(), useState returns 2 values, animals - which holds the current stat
   const [animals, setAnimals] = useState([])
 
@@ -24,11 +24,18 @@ const AnimalList = () => {
     .then(() => AnimalManager.getAll().then(setAnimals))
   }
 
-  // returns JSX list of animal cards, by mapping through each animal object in animal array and passing data to <AnimalCard />
+  // returns JSX list of animal cards, by mapping through each animal object in animal array and passing data to <AnimalCard />. <..props> is passed-in and used in onClick to redirect user to animalForm when 'Admit Animal' is clicked.
   return (
-    <div className="container-cards">
-      {animals.map(animal => <AnimalCard key={animal.id} animalObj={animal} deleteAnimal={deleteAnimal} />)}
-    </div>
+    <>
+      <section className="section-content">
+        <button type="button" className="btn" onClick={() => {props.history.push('/animals/new')}}>
+          Admit Animal
+        </button>
+      </section>
+      <div className="container-cards">
+        {animals.map(animal => <AnimalCard key={animal.id} animalObj={animal} deleteAnimal={deleteAnimal} />)}
+      </div>
+    </>
   )
 }
 

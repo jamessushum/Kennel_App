@@ -14,6 +14,11 @@
       "id": 3,
       "name": "esme",
       "breed": "pitbull"
+    },
+    {
+      "name": "bee",
+      "breed": "cat",
+      "id": 4
     }
   ],
   "locations": [
@@ -26,6 +31,16 @@
       "id": 2,
       "name": "Love at First Sight! Adoption Center",
       "address": "4423 Murphy Rd, Nashville, TN 37209"
+    },
+    {
+      "name": "Crossroads Pets",
+      "address": "707 Monroe St, Nashville, TN 37208",
+      "id": 3
+    },
+    {
+      "name": "Metro Animal Care and Control",
+      "address": "5125 Harding Pl, Nashville, TN 37211",
+      "id": 4
     }
   ],
   "employees": [
@@ -36,6 +51,14 @@
     {
       "id": 2,
       "name": "John Doe"
+    },
+    {
+      "name": "Jake Doe",
+      "id": 3
+    },
+    {
+      "name": "Jill Doe",
+      "id": 4
     }
   ],
   "owners": [
@@ -48,6 +71,16 @@
       "id": 2,
       "name": "John Doe",
       "email": "john_doe@gmail.com"
+    },
+    {
+      "name": "Jake Doe",
+      "email": "jake_doe@gmail.com",
+      "id": 3
+    },
+    {
+      "name": "Jill Doe",
+      "email": "jill_doe@gmail.com",
+      "id": 4
     }
   ]
 }

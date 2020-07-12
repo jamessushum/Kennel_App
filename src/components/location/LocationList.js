@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LocationManager from '../../modules/LocationManager';
 import LocationCard from './LocationCard';
 
-const LocationList = () => {
+const LocationList = ({...props}) => {
   // Initialize state
   const [locations, setLocations] = useState([])
 
@@ -25,9 +25,14 @@ const LocationList = () => {
 
   // Returning JSX for each location card using map and passing the state as a prop to <LocationCard />
   return (
-    <div className="container-cards">
-      {locations.map(location => <LocationCard key={location.id} locationObj={location} deleteLocation={deleteLocation} />)}
-    </div>
+    <>
+      <section className="section-content">
+        <button type="button" className="btn" onClick={() => props.history.push('/locations/new')}>Add Location</button>
+      </section>
+      <div className="container-cards">
+        {locations.map(location => <LocationCard key={location.id} locationObj={location} deleteLocation={deleteLocation} />)}
+      </div>
+    </>
   )
 }
 

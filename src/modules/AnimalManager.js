@@ -15,7 +15,18 @@ export default {
     const response = await fetch(`${remoteURL}/animals/${id}`, {
       method: "DELETE"
     })
-    const result = response.json()
+    const result = await response.json()
+    return result
+  },
+  async post(newAnimal) {
+    const response = await fetch(`${remoteURL}/animals`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newAnimal)
+    })
+    const result = await response.json()
     return result
   }
 }
