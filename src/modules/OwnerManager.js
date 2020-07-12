@@ -15,7 +15,18 @@ export default {
     const response = await fetch(`${remoteURL}/owners/${id}`, {
       method: "DELETE"
     })
-    const result = response.json()
+    const result = await response.json()
+    return result
+  },
+  async post(newOwnerobj) {
+    const response = await fetch(`${remoteURL}/owners`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newOwnerobj)
+    })
+    const result = await response.json()
     return result
   }
 }

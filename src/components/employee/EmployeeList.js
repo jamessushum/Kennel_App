@@ -3,7 +3,7 @@ import EmployeeManager from '../../modules/EmployeeManager';
 import EmployeeCard from './EmployeeCard';
 import './Employee.css'
 
-const EmployeeList = () => {
+const EmployeeList = ({...props}) => {
   const [employees, setEmployees] = useState([])
 
   const getEmployees = (() => {
@@ -21,9 +21,14 @@ const EmployeeList = () => {
   }
 
   return (
-    <div className="container-cards">
-      {employees.map(employee => <EmployeeCard key={employee.id} employeeObj={employee} deleteEmployee={deleteEmployee} />)}
-    </div>
+    <>
+      <section className="section-content">
+        <button type="button" className="btn" onClick={() => props.history.push('/employees/new')}>Add Employee</button>
+      </section>
+      <div className="container-cards">
+        {employees.map(employee => <EmployeeCard key={employee.id} employeeObj={employee} deleteEmployee={deleteEmployee} />)}
+      </div>
+    </>
   )
 }
 

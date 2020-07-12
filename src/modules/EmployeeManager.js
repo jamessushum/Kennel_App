@@ -15,7 +15,18 @@ export default {
     const response = await fetch(`${remoteURL}/employees/${id}`, {
       method: "DELETE"
     })
-    const result = response.json()
+    const result = await response.json()
+    return result
+  },
+  async post(newEmployeeObj) {
+    const response = await fetch(`${remoteURL}/employees`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newEmployeeObj)
+    })
+    const result = await response.json()
     return result
   }
 }

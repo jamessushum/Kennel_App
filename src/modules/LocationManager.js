@@ -15,7 +15,18 @@ export default {
     const response = await fetch(`${remoteURL}/locations/${id}`, {
       method: "DELETE"
     })
-    const result = response.json()
+    const result = await response.json()
+    return result
+  },
+  async post(newLocationObj) {
+    const response = await fetch(`${remoteURL}/locations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newLocationObj)
+    })
+    const result = await response.json()
     return result
   }
 }
