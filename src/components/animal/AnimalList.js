@@ -8,14 +8,13 @@ const AnimalList = ({...props}) => {
 
   // Function invokes getAll method fetching array of all animals, then setting state with fetch response
   const getAnimals = () => {
-    return AnimalManager.getAll().then(response => {
-      setAnimals(response)
-    })
+    return AnimalManager.getAll()
+      .then(response => setAnimals(response))
   }
 
   // useEffect runs after initial render and only once, invoking the function fetching array of all animals from API
   useEffect(() => {
-    getAnimals()
+    getAnimals();
   }, [])
 
   // Delete animal function takes in the animal id and invokes delete method in API. Then getAll method is invoked to retrieve updated list and the response is passed-in to setAnimals triggering the re-rendering of the JSX.
