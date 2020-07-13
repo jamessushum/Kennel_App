@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import React from 'react';
 import Home from './home/Home';
 import AnimalList from './animal/AnimalList';
@@ -11,11 +11,19 @@ import AnimalForm from './animal/AnimalForm';
 import EmployeeForm from './employee/EmployeeForm';
 import LocationForm from './location/LocationForm';
 import OwnerForm from './owner/OwnerForm';
+import Login from './auth/Login';
 
-// Function responsible for what gets rendered in the display area of the application according to the user's input in the nav bar. <Route /> from the react-router-dom library delineates what gets rendered according to the <Link />'s path. <React.Fragment /> or </> is used in lieu of any additional containers. <Route /> for AnimalDetail looks for a path with animalId which is set by the <Link /> in the Details button in AnimalCard, the render then returns the AnimalDetail passing-in the animalId found in props.match.params and props using spread operator to access the history property. 
+// Function responsible for what gets rendered in the display area of the application according to the user's input in the nav bar. <Route /> from the react-router-dom library delineates what gets rendered according to the <Link />'s path. <React.Fragment /> or </> is used in lieu of any additional containers. <Route /> for AnimalDetail looks for a path with animalId which is set by the <Link /> in the Details button in AnimalCard, the render then returns the AnimalDetail passing-in the animalId found in props.match.params and props using spread operator to access the history property. Conditional added to animals, locations, employees and owners list to check if user is logged-in.
 const ApplicationViews = () => {
+  // Method to check if credentials are stored in session storage
+  const isAuthenticated = () => sessionStorage.getItem('credentials') !== null
+
   return (
     <React.Fragment>
+      <Route
+        exact path="/login"
+        component={Login}
+      />
       <Route 
         exact path="/"
         render={props => {
@@ -25,7 +33,11 @@ const ApplicationViews = () => {
       <Route
         exact path="/animals"
         render={props => {
-          return <AnimalList {...props} />
+          if (isAuthenticated()) {
+            return <AnimalList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }}
       />
       <Route
@@ -43,7 +55,11 @@ const ApplicationViews = () => {
       <Route 
         exact path="/locations"
         render={props => {
-          return <LocationList {...props} />
+          if (isAuthenticated()) {
+            return <LocationList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }}
       />
       <Route 
@@ -61,7 +77,11 @@ const ApplicationViews = () => {
       <Route 
         exact path="/employees"
         render={props => {
-          return <EmployeeList {...props} />
+          if (isAuthenticated()) {
+            return <EmployeeList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }}
       />
       <Route
@@ -73,7 +93,11 @@ const ApplicationViews = () => {
       <Route 
         exact path="/owners"
         render={props => {
-          return <OwnerList {...props} />
+          if (isAuthenticated()) {
+            return <OwnerList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }}
       />
       <Route
