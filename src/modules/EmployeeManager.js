@@ -39,5 +39,10 @@ export default {
     })
     const result = await response.json()
     return result
+  },
+  async getWithAnimals(id) {
+    const response = await fetch(`${remoteURL}/employees/${id}?_embed=animals`)
+    const result = await response.json()
+    return result
   }
 }

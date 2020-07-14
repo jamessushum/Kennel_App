@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import AnimalManager from '../../modules/AnimalManager';
+import EmployeeManager from '../../modules/EmployeeManager'
 import './AnimalForm.css'
 
 const AnimalEditForm = ({...props}) => {
   // Initializing state for single animal 
   const [animal, setAnimal] = useState({
     name: "",
-    breed: ""
+    breed: "",
+    employeeId: ""
   })
+
+  // Initializing state for employees, all employees will be stored here
+  const [employees, setEmployees] = useState([])
 
   // Initializing state for boolean flag
   const [isLoading, setIsloading] = useState(true)
@@ -19,7 +24,7 @@ const AnimalEditForm = ({...props}) => {
     setAnimal(stateToChange)
   }
 
-  // Method for update button, sets boolean flag to true so update button is disabled, creates an editedAnimal object passing in id from props, name and breed from modified animal state, invokes update API method passing-in editedAnimal object to update existing animal object in API, then re-directs user to animal list page
+  // Method for update button, sets boolean flag to true so update button is disabled, creates an editedAnimal object passing in id from props, name, breed and employeeId from modified animal state, invokes update API method passing-in editedAnimal object to update existing animal object in API, then re-directs user to animal list page
   const updateExistingAnimal = event => {
     event.preventDefault()
     setIsloading(true)
@@ -27,23 +32,27 @@ const AnimalEditForm = ({...props}) => {
     const editedAnimal = {
       id: props.match.params.animalId,
       name: animal.name,
-      breed: animal.breed
+      breed: animal.breed,
+      employeeId: parseInt(animal.employeeId)
     }
 
     AnimalManager.update(editedAnimal)
       .then(() => props.history.push('/animals'))
   }
 
-  // useEffect invokes get(id) API method passing-in animadId from props, then sets the animal state with the response, and sets boolean flag to false to enable update button, passing animalId as a dependency so useEffect will re-invoke when id changes
+  // useEffect invokes animal get(id) API method passing-in animadId from props, then invokes employee getAll() then sets the animal state with the response from animal API, sets the employees state with response from employee API and sets boolean flag to false to enable update button, passing animalId as a dependency so useEffect will re-invoke when id changes
   useEffect(() => {
     AnimalManager.get(props.match.params.animalId)
-      .then(response => {
-        setAnimal(response)
-        setIsloading(false)
+      .then(responseAnimal => {
+        EmployeeManager.getAll().then(responseEmployee => {
+          setAnimal(responseAnimal)
+          setEmployees(responseEmployee)
+          setIsloading(false)
+        })
       })
   }, [props.match.params.animalId])
 
-  // JSX returns form with name and breed input fields, and update button
+  // JSX returns form with name and breed input fields, dropdown of employees with <option />'s mapped from the employees state, and update button
   return (
     <>
       <form>
@@ -53,6 +62,10 @@ const AnimalEditForm = ({...props}) => {
             <label htmlFor="name">Edit Name</label>
             <input type="text" required className="form-control" id="breed" onChange={handleFieldChange} value={animal.breed} />
             <label htmlFor="breed">Edit Breed</label>
+            <select className="form-control" id="employeeId" value={animal.employeeId} onChange={handleFieldChange}>
+              {employees.map(employee => <option key={employee.id} value={employee.id}>{employee.name}</option>)}
+            </select>
+            <label htmlFor="employeeId">Edit Employee</label>
           </div>
           <div className="alignRight">
             <button type="button" disabled={isLoading} onClick={updateExistingAnimal} className="btn btn-primary">Update</button>
