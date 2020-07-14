@@ -12,6 +12,10 @@ import EmployeeForm from './employee/EmployeeForm';
 import LocationForm from './location/LocationForm';
 import OwnerForm from './owner/OwnerForm';
 import Login from './auth/Login';
+import AnimalEditForm from './animal/AnimalEditForm';
+import LocationEditForm from './location/LocationEditForm';
+import EmployeeEditForm from './employee/EmployeeEditForm';
+import OwnerEditForm from './owner/OwnerEditForm';
 
 // Function responsible for what gets rendered in the display area of the application according to the user's input in the nav bar. <Route /> from the react-router-dom library delineates what gets rendered according to the <Link />'s path. <React.Fragment /> or </> is used in lieu of any additional containers. <Route /> for AnimalDetail looks for a path with animalId which is set by the <Link /> in the Details button in AnimalCard, the render then returns the AnimalDetail passing-in the animalId found in props.match.params and props using spread operator to access the history property. Conditional added to animals, locations, employees and owners list to check if user is logged-in.
 const ApplicationViews = () => {
@@ -32,13 +36,7 @@ const ApplicationViews = () => {
       />
       <Route
         exact path="/animals"
-        render={props => {
-          if (isAuthenticated()) {
-            return <AnimalList {...props} />
-          } else {
-            return <Redirect to="/login" />
-          }
-        }}
+        render={props => isAuthenticated() ? <AnimalList {...props} /> : <Redirect to="/login" />}
       />
       <Route
         exact path="/animals/:animalId(\d+)"
@@ -52,15 +50,13 @@ const ApplicationViews = () => {
           return <AnimalForm {...props} />
         }}
       />
+      <Route
+        exact path="/animals/:animalId(\d+)/edit"
+        render={props => isAuthenticated() ? <AnimalEditForm {...props} /> : <Redirect to="/login" />}
+      />
       <Route 
         exact path="/locations"
-        render={props => {
-          if (isAuthenticated()) {
-            return <LocationList {...props} />
-          } else {
-            return <Redirect to="/login" />
-          }
-        }}
+        render={props => isAuthenticated() ? <LocationList {...props} /> : <Redirect to="/login" />}
       />
       <Route 
         exact path="/locations/:locationId(\d+)"
@@ -74,15 +70,13 @@ const ApplicationViews = () => {
           return <LocationForm {...props} />
         }}
       />
+      <Route
+        exact path="/locations/:locationId(\d+)/edit"
+        render={props => isAuthenticated() ? <LocationEditForm {...props} /> : <Redirect to="/login" />}
+      />
       <Route 
         exact path="/employees"
-        render={props => {
-          if (isAuthenticated()) {
-            return <EmployeeList {...props} />
-          } else {
-            return <Redirect to="/login" />
-          }
-        }}
+        render={props => isAuthenticated() ? <EmployeeList {...props} /> : <Redirect to="/login" />}
       />
       <Route
         exact path="/employees/new"
@@ -90,21 +84,23 @@ const ApplicationViews = () => {
           return <EmployeeForm {...props} />
         }}
       />
+      <Route
+        exact path="/employees/:employeeId(\d+)/edit"
+        render={props => isAuthenticated() ? <EmployeeEditForm {...props} /> : <Redirect to="/login" />}
+      />
       <Route 
         exact path="/owners"
-        render={props => {
-          if (isAuthenticated()) {
-            return <OwnerList {...props} />
-          } else {
-            return <Redirect to="/login" />
-          }
-        }}
+        render={props => isAuthenticated() ? <OwnerList {...props} /> : <Redirect to="/login" />}
       />
       <Route
         exact path="/owners/new"
         render={props => {
           return <OwnerForm {...props} />
         }}
+      />
+      <Route
+        exact path="/owners/:ownerId(\d+)/edit"
+        render={props => isAuthenticated() ? <OwnerEditForm {...props} /> : <Redirect to="/login" />}
       />
     </React.Fragment>
   )

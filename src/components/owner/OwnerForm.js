@@ -34,7 +34,7 @@ const OwnerForm = ({...props}) => {
           <div className="formgrid">
             <input type="text" required onChange={handleFieldChange} id="name" placeholder="Owner name" />
             <label htmlFor="name">Name</label>
-            <input type="text" required onChange={handleFieldChange} id="email" placeholder="Owner email" />
+            <input type="email" required onChange={handleFieldChange} id="email" placeholder="Owner email" />
             <label htmlFor="email">Email</label>
           </div>
           <div className="alignRight">

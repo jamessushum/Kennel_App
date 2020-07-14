@@ -30,7 +30,7 @@ const LocationList = ({...props}) => {
         <button type="button" className="btn" onClick={() => props.history.push('/locations/new')}>Add Location</button>
       </section>
       <div className="container-cards">
-        {locations.map(location => <LocationCard key={location.id} locationObj={location} deleteLocation={deleteLocation} />)}
+        {locations.map(location => <LocationCard key={location.id} locationObj={location} deleteLocation={deleteLocation} {...props} />)}
       </div>
     </>
   )

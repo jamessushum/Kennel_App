@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Location.css'
 
 // Function responsible for rendering the location cards. Each locationObj is being passed-in as a prop as well as deleteLocation method from parent component, using destructuring.
-const LocationCard = ({locationObj, deleteLocation}) => {
+const LocationCard = ({locationObj, deleteLocation, ...props}) => {
   return (
     <div className="card">
       <div className="card-content">
@@ -16,6 +16,7 @@ const LocationCard = ({locationObj, deleteLocation}) => {
         <Link to={`/locations/${locationObj.id}`}>
           <button>Details</button>
         </Link>
+        <button type="button" onClick={() => props.history.push(`/locations/${locationObj.id}/edit`)}>Edit</button>
         <button type="button" onClick={() => deleteLocation(locationObj.id)}>Close</button>
       </div>
     </div>

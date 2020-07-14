@@ -25,7 +25,7 @@ const OwnerList = ({...props}) => {
         <button type="button" className="btn" onClick={() => props.history.push('/owners/new')}>Add Owner</button>
       </section>
       <div className="container-cards">
-        {owners.map(owner => <OwnerCard key={owner.id} ownerObj={owner} deleteOwner={deleteOwner} />)}
+        {owners.map(owner => <OwnerCard key={owner.id} ownerObj={owner} deleteOwner={deleteOwner} {...props} />)}
       </div>
     </>
   )
