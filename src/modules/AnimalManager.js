@@ -39,5 +39,12 @@ export default {
     })
     const result = await response.json()
     return result
+  },
+  async getRandomId() {
+    const response = await fetch(`${remoteURL}/animals`)
+    const result = await response.json()
+    const randomIndex = Math.floor(Math.random() * result.length)
+    const randomAnimal = result[randomIndex]
+    return randomAnimal.id
   }
 }
