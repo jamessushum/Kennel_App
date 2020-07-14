@@ -28,5 +28,16 @@ export default {
     })
     const result = await response.json()
     return result
+  },
+  async update(editedEmployee) {
+    const response = await fetch(`${remoteURL}/employees/${editedEmployee.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedEmployee)
+    })
+    const result = await response.json()
+    return result
   }
 }

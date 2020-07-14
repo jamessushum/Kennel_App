@@ -28,5 +28,16 @@ export default {
     })
     const result = await response.json()
     return result
+  },
+  async update(editedOwner) {
+    const response = await fetch(`${remoteURL}/owners/${editedOwner.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedOwner)
+    })
+    const result = await response.json()
+    return result
   }
 }

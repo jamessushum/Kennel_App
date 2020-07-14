@@ -26,7 +26,7 @@ const EmployeeList = ({...props}) => {
         <button type="button" className="btn" onClick={() => props.history.push('/employees/new')}>Add Employee</button>
       </section>
       <div className="container-cards">
-        {employees.map(employee => <EmployeeCard key={employee.id} employeeObj={employee} deleteEmployee={deleteEmployee} />)}
+        {employees.map(employee => <EmployeeCard key={employee.id} employeeObj={employee} deleteEmployee={deleteEmployee} {...props} />)}
       </div>
     </>
   )
