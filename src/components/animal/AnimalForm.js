@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnimalManager from '../../modules/AnimalManager';
+import EmployeeManager from '../../modules/EmployeeManager';
 import './AnimalForm.css'
 
 const AnimalForm = ({...props}) => {
   // Setting initial state for animal data
   const [animal, setAnimal] = useState({
     name: "",
-    breed: ""
+    breed: "",
+    employeeId: ""
   })
+
+  // Initializing state housing all employees
+  const [employees, setEmployees] = useState([])
   
   // Setting initital state for boolean flag 
   const [isLoading, setIsloading] = useState(false)
@@ -19,19 +24,32 @@ const AnimalForm = ({...props}) => {
     setAnimal(stateToChange)
   }
 
-  // Method validates input fields, disables button, posts modified state to API, and redirects user to list of animals.
+  // Method for submit button, validates input fields, disables button, creates new animal object and invokes animal post(newAnimalObj) API method passing-in new object then redirects user to animal list page
   const constructNewAnimal = event => {
     event.preventDefault()
     if (animal.name === "" || animal.breed === "") {
       window.alert("Please input an animal name and breed")
     } else {
       setIsloading(true)
-      AnimalManager.post(animal)
+
+      const newAnimalObj = {
+        name: animal.name,
+        breed: animal.breed,
+        employeeId: parseInt(animal.employeeId)
+      }
+
+      AnimalManager.post(newAnimalObj)
         .then(() => props.history.push('/animals'))
     }
   }
 
-  // Returns JSX with handleFieldChange method on input fields and constructNewAnimal method on submit button.
+  // useEffect invoking employee getAll() API method, then setting employees state with the response
+  useEffect(() => {
+    EmployeeManager.getAll()
+      .then(response => setEmployees(response))
+  }, [])
+
+  // Returns JSX for input fields and employee dropdown selection, mapping through the employees state to dynamically create <option />. First select option is disabled and the default value.
   return (
     <>
       <form>
@@ -41,6 +59,11 @@ const AnimalForm = ({...props}) => {
             <label htmlFor="name">Name</label>
             <input type="text" required onChange={handleFieldChange} id="breed" placeholder="Breed" />
             <label htmlFor="breed">Breed</label>
+            <select className="form-control" id="employeeId" onChange={handleFieldChange} defaultValue="">
+              <option value="" disabled>Select an employee</option>
+              {employees.map(employee => <option key={employee.id} value={employee.id}>{employee.name}</option>)}
+            </select>
+            <label>Assign Employee</label>
           </div>
           <div className="alignRight">
             <button type="button" disabled={isLoading} onClick={constructNewAnimal}>Submit</button>
