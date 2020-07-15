@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = ({...props}) => {
+const Login = ({setUser, ...props}) => {
   // Initializing state for user credentials
   const [credentials, setCredentials] = useState({
     email: "",
@@ -14,13 +14,13 @@ const Login = ({...props}) => {
     setCredentials(stateToChange)
   }
 
-  // Method for submit button, checks if input fields are empty, sets the credentials to session storage, and re-directs users to home page
+  // Method for submit button, checks if input fields are empty, invokes setUser(user) method from Kennel parent storing the user credentials in session storage and setting the hasUser state to 'true', then re-directing user to home page
   const handleLogin = event => {
     event.preventDefault()
     if (credentials.email === "" || credentials.password === "") {
       window.alert("Email and password required")
     } else {
-      sessionStorage.setItem("credentials", JSON.stringify(credentials))
+      setUser(credentials)
       props.history.push('/')
     }
   }
