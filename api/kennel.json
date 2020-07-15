@@ -23,6 +23,30 @@
       "name": "bee",
       "breed": "tortie cat",
       "employeeId": 2
+    },
+    {
+      "name": "buddy",
+      "breed": "husky",
+      "employeeId": 4,
+      "id": 5
+    },
+    {
+      "name": "bagel",
+      "breed": "corgi",
+      "employeeId": 3,
+      "id": 6
+    },
+    {
+      "id": 7,
+      "name": "ryu",
+      "breed": "shiba inu",
+      "employeeId": 2
+    },
+    {
+      "name": "lucky",
+      "breed": "siamese cat",
+      "employeeId": 1,
+      "id": 8
     }
   ],
   "locations": [
