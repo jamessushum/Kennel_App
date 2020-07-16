@@ -5,7 +5,7 @@ import './Kennel.css';
 
 // Function responsible for what gets rendered in the DOM, child components get passed-in.
 const Kennel = () => {
-  // Method to check if credentials are stored in session storage
+  // Method to check if credentials are stored in session storage, returns true or false
   const isAuthenticated = () => sessionStorage.getItem('credentials') !== null
 
   // Initializing user state with isAuthenticated method checking if session storage contains user credentials
@@ -17,10 +17,16 @@ const Kennel = () => {
     setHasUser(isAuthenticated())
   }
 
-  // Returning JSX of NavBar and ApplicationViews, passing user state and setUser method as props
+  // Method clears user from session storage and sets hasUser state to 'false'
+  const clearUser = () => {
+    sessionStorage.clear()
+    setHasUser(isAuthenticated())
+  }
+
+  // Returning JSX of NavBar and ApplicationViews, passing user state, setUser and clearUser method as props
   return (
     <>
-      <NavBar hasUser={hasUser} />
+      <NavBar hasUser={hasUser} clearUser={clearUser} />
       <ApplicationViews hasUser={hasUser} setUser={setUser} />
     </>
   )
